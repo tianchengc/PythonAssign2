@@ -13,14 +13,17 @@ def primary_school_quiz(flag, n):
             b="Question"+ str(i+1) + ":\n" "What is the result of "+ a +" ? "
             answer=int(input(b))
             z=x-y
+            if answer==z:
+                count=count+1
     
         elif flag==1:
             a=str(x)+'^'+str(y)
             b='Question'+str(i+1)+':\n' 'What is the result of '+a+ " ? "
             answer=int(input(b))
             z=x**y
-        if answer==z:
-            count=count+1
+            if answer==z:
+                count=count+1
+
     return(count)         
 
 
@@ -77,17 +80,18 @@ status=input("Hi "+name+". Are you in? Enter \n1 for primary school\n2 for high 
 if status=='1':
     # your code goes here
     ascii_name_plaque(name+' welcome to my quiz-generator for primary school students.')
-    flag=input(name+' what would you like to practice? Enter\n0 for subtraction\n1 for exponentiation\n')
-    n=input('How many practice questions would you like to do? ')
-    print(name+', here is your '+n+' questions:')
-    result=primary_school_quiz(flag, int(n))
-    grade=result/n
-    if grade>=0.9:
-        print('Congratulations '+name+' ! You’ll probably get an A tomorrow. Now go eat your dinner and go to sleep. Good bye '+name+' !')
-    elif grade>=0.7:
-        print('You did well '+name+', but I know you can do better. Good bye '+name+' !')
-    else:
-        print('I think you need some more practice '+name+'. Good bye '+name+' !')
+    flag=int(input(name+' what would you like to practice? Enter\n0 for subtraction\n1 for exponentiation\n'))
+    n=int(input('How many practice questions would you like to do? '))
+    if n>0:
+        print(name+', here is your '+str(n)+' questions:')
+        result=primary_school_quiz(flag, n)
+        grade=result/n
+        if grade>=0.9:
+            print('Congratulations '+name+' ! You’ll probably get an A tomorrow. Now go eat your dinner and go to sleep. Good bye '+name+' !')
+        elif grade>=0.7:
+            print('You did well '+name+', but I know you can do better. Good bye '+name+' !')
+        else:
+            print('I think you need some more practice '+name+'. Good bye '+name+' !')
     
 elif status=='2':
 
@@ -97,7 +101,9 @@ elif status=='2':
         question=input(name+", would you like a quadratic equation solved? ")
 
         # your code to handle varous form of "yes" goes here
-
+        question=question.strip()
+        question=question.lower()
+        
         if question!="yes":
             flag=False
         else:
@@ -105,9 +111,13 @@ elif status=='2':
             # your code goes here (i.e ask for coefficients a,b and c and call)
             # then make a function call and pass to the fucntion
             # the three coefficients the pupil entered
+            a=int(input('Enter a number the coefficient a: '))
+            b=int(input('Enter a number the coefficient b: '))
+            c=int(input('Enter a number the coefficient c: '))
+            high_school_eqsolver(a,b,c)
  
 else:
     # your code goes here
-    pass
+    print(name+' you are not a target audience for this software.')
 
 print("Good bye "+name+"!")
