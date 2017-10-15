@@ -57,5 +57,70 @@ def casual_number(s):
         else:
             output=output+s[n]
     print(output)
-        
-        
+
+def alienNumbers(s):
+    value=s.count('T')*1024+s.count('y')*598+s.count('!')*121+s.count('a')*42+s.count('N')*6+s.count('U')*1
+    print(value)
+
+def alienNumbersAgain(s):
+    value=0
+    for i in s:
+        if i=='T':
+            value+=1024
+        elif i=='y':
+            value+=598
+        elif i=='!':
+            value+=121
+        elif i=='a':
+            value+=42
+        elif i=='N':
+            value+=6
+        elif i=='U':
+            value+=1
+    print(value)
+
+def encrypt(s):
+    s=list(s)
+    length=len(s)
+    output=[]
+    for n in range(length):
+        output.append(s.pop())
+        s.reverse()
+    output_r=''.join(output)
+    print(output_r)
+
+def oPify(s):
+    #s=list(s)
+    length=len(s)
+    output=''
+    for n in range(length):
+        if n==length-1:
+            output=output+s[n]
+            break
+        elif s[n].isalpha() and s[n+1].isalpha():
+            if s[n].isupper():
+                block=s[n]+'O'
+            else:
+                block=s[n]+'o'
+            if s[n+1].isupper():
+                block=block+'P'
+            else:
+                block=block+'p'
+            output=output+block
+        else:
+            output=output+s[n]
+    print(output)
+
+def nonrepetitive(s):
+    length=len(s)
+    flag=True
+    for n in range(length//2):
+        for x in range(length-2*n-1):
+            if s[x:x+n+1]==s[x+n+1:x+n+n+2]:
+                flag=False
+    print(flag)
+            
+    
+
+
+    
